@@ -3,12 +3,12 @@ set -x
 
 tg_sendDocument() {
     curl "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendDocument" \
-    -F chat_id="-$TG_CHAT_ID" -F document=@"$1" -F caption="$2" &> /dev/null
+    -F chat_id="-$TG_CHAT_ID_GROUP" -F document=@"$1" -F caption="$2" &> /dev/null
 }
 
 tg_sendMessage() {
     curl "https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage" \
-    -F chat_id="-$TG_CHAT_ID" -F text="$1" -F parse_mode="Markdown" &> /dev/null
+    -F chat_id="-$TG_CHAT_ID_GROUP" -F text="$1" -F parse_mode="Markdown" &> /dev/null
 }
 
 kmake() {
