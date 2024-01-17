@@ -50,7 +50,8 @@ kzip() {
 	ZIP_PREFIX_KVER=$(grep Linux out/.config | cut -f 3 -d " ")
 	ZIP_POSTFIX_DATE=$(date +%d-%h-%Y-%R:%S | sed "s/:/./g")
 	ZIP_PREFIX_STR="$BLDHST-$DEVICE"
-	ZIP_FMT=${ZIP_PREFIX_STR}_"${ZIP_PREFIX_KVER}"_"${ZIP_POSTFIX_DATE}"
+	ZIP_ORGES_BUILD_TYPE=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+	ZIP_FMT=${ZIP_PREFIX_STR}_"${ZIP_PREFIX_KVER}"_"${ZIP_ORGES_BUILD_TYPE}"_"${ZIP_POSTFIX_DATE}"
 	if [[ $* =~ "out" ]]; then
 		( cd out && zip -q -0 "${ZIP_FMT}".zip . )
 	else
@@ -69,7 +70,8 @@ kzip() {
 	fi
 }
 
-tg_sendMessage "Build started"
+ZIP_ORGES_BUILD_TYPE=$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)
+tg_sendMessage "Build Started on Branch: ${ZIP_ORGES_BUILD_TYPE}"
 
 BLDHST="mochi" && DEVICE="vayu"
 if [[ $* =~ "gcc" ]]; then
