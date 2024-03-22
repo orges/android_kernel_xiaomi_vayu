@@ -15,9 +15,6 @@ jobs:
           command: "git clone --depth=1 --single-branch https://github.com/cyberknight777/gcc-arm64 ~/.local/gcc64 &&
           git clone --depth=1 --single-branch https://github.com/cyberknight777/gcc-arm ~/.local/gcc32"
       - run:
-          name: "set ksu version"
-          command: "./ksuv.sh"
-      - run:
           name: "build"
           command: "./build.sh cidebug+gcc+upload+pix+tel"
 
