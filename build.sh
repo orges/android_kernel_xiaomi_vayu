@@ -129,11 +129,9 @@ fi
 if [[ ${CI} ]]; then
 	if [[ $* =~ "cidebug" ]]; then
 		touch out/build.log
-		export KSU_GIT_VERSION=$(curl -I -k "https://api.github.com/repos/tiann/KernelSU/commits?per_page=1" | sed -n '/^[Ll]ink:/ s/.*"next".*page=\([0-9]*\).*"last".*/\1/p')
 		kmake
 		echo $KSU_GIT_VERSION
 	else
-		export KSU_GIT_VERSION=$(curl -I -k "https://api.github.com/repos/tiann/KernelSU/commits?per_page=1" | sed -n '/^[Ll]ink:/ s/.*"next".*page=\([0-9]*\).*"last".*/\1/p')
 		kmake &> out/build.log
 		echo $KSU_GIT_VERSION
 	fi
