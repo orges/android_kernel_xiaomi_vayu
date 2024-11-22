@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "get clang"
-          command: "git clone --depth=1 --single-branch https://gitlab.com/ThankYouMario/android_prebuilts_clang-standalone ~/.local/clang"
+          command: "git clone --depth=1 --single-branch -b 20 https://bitbucket.org/orgese/clang ~/.local/clang"
       - run:
           name: "build"
           command: "./build.sh cidebug+cla+llvm+upload+pix+tel"
